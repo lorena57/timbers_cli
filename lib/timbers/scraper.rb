@@ -23,7 +23,6 @@ class Timbers::Scraper
         position = indiv.css("span.position").text
         url = indiv.css('a')[0].attr('href')
         Timbers::Players.new(name, position, url)
-        binding.pry
       end
     end 
 
