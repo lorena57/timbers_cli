@@ -1,6 +1,7 @@
 class Timbers::Players
 
-    attr_accessor :name, :position, :url
+    attr_accessor :name, :position, :url, :stat
+    
   
     @@all = []
    
@@ -8,6 +9,7 @@ class Timbers::Players
         @name = name
         @position = position
         @url = url
+        @stat = stat
         @@all << self
     end 
     
