@@ -1,0 +1,3 @@
+class Timbers::PlayerBio
+
+end 

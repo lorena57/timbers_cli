@@ -1,8 +1,21 @@
-class Timbers::CLI
-
-    def call
-        puts 'hey'
-        binding.pry
-    end
+class Timbers::CLI 
+ 
+  def call 
+    greeting
+    Timbers::Scraper.player_info
     
+    
+    
+  end 
+
+  def greeting
+    puts "Here"
+  end
+
+
+
+
+
+
 end
+ 

@@ -3,3 +3,5 @@
 require_relative '../lib/environment'
 
 Timbers::CLI.new.call
+
+#run file, name of file
