@@ -12,11 +12,7 @@ class Timbers::CLI
     puts "\nWelcome to the Portland Timbers Home Page"
   end
 
-  # def main_menu
-  #   puts "\n\nWould you like to see a list of the current players?"
-  #   input = gets.strip.downcase
-  #   return input
-  # end
+
 
   def main_menu
     puts "\nWould you like to see a list of the current players?"
@@ -30,7 +26,7 @@ class Timbers::CLI
       greeting
     else
       puts "\nI don't understand your selection."
-      greeting
+      main_menu
       
   end
 end

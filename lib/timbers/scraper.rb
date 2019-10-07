@@ -11,15 +11,16 @@ class Timbers::Scraper
         position = indiv.css("span.position").text
         url = indiv.css('a')[0].attr('href')
         Timbers::Players.new(name, position, url)
+        # binding.pry
       end
     end 
 
     def self.player_bio(info)
-      url = info.url
+      url = "https://www.timbers.com#{info.url}"
       html = Nokogiri::HTML(open(url))
-      bio = html.css("div.bio p").text.map
+      bio = html.css("div.bio p:nth-child(2)").text
       info.stat = bio
-     
+      #binding.pry
     end
   
   
