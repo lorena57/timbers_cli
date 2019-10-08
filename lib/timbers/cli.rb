@@ -32,7 +32,7 @@ class Timbers::CLI
 end
 
   def list_players
-    Timbers::Players.all.each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
+    Timbers::Players.all.take(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
   end
 
   def choose_player
