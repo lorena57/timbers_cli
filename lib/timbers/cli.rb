@@ -6,10 +6,13 @@ class Timbers::CLI
     self.main_menu
   end 
     
-   
+    
 
   def greeting
+    
+    puts "----------------------------------------------"
     puts "\nWelcome to the Portland Timbers Home Page"
+    puts "\n----------------------------------------------"
   end
 
 
@@ -17,7 +20,7 @@ class Timbers::CLI
   def main_menu
     puts "\nWould you like to see a list of the current players?"
     puts "Enter 'y' for yes and 'n' for no"
-    puts "If you would to exit the program "
+    puts "If you would to exit the program\n"
     input = gets.strip.downcase
     if input == "y"
       list_players
@@ -32,11 +35,11 @@ class Timbers::CLI
 end
 
   def list_players
-    Timbers::Players.all.take(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
+    Timbers::Players.all.sample(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
   end
 
   def choose_player
-    puts "Chose a player you'd like to learn more about"
+    puts "\nEnter a player number you'd like to learn more about."
     index = gets.strip.to_i - 1
     info = Timbers::Players.all[index]
    
@@ -45,6 +48,8 @@ end
   end
 
   def display_player_info(info)
+    
+    puts "\n----------DESCRIPTION----------"
     puts info.stat
    
   end

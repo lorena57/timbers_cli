@@ -10,8 +10,9 @@ class Timbers::Scraper
         name = indiv.css("a.name_link").text
         position = indiv.css("span.position").text
         url = indiv.css('a')[0].attr('href')
-        Timbers::Players.new(name, position, url)
-        # binding.pry
+        age = indiv.css("span.jersey").text
+        Timbers::Players.new(name, position, url, age)
+        #binding.pry
       end
     end 
 
@@ -20,7 +21,6 @@ class Timbers::Scraper
       html = Nokogiri::HTML(open(url))
       bio = html.css("div.bio p:nth-child(2)").text
       info.stat = bio
-      #binding.pry
     end
   
   
