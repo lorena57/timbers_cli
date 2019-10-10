@@ -31,6 +31,8 @@ class Timbers::CLI
 
   def list_players
     Timbers::Players.all.sample(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
+
+
   end
 
   def choose_player
