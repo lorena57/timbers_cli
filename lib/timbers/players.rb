@@ -1,6 +1,6 @@
 class Timbers::Players
 
-    attr_accessor :name, :position, :url, :stat, :age
+    attr_accessor :name, :position, :url, :stat, :age, :bio
     
   
     @@all = []

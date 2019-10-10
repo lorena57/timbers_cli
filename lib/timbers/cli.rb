@@ -50,8 +50,6 @@ class Timbers::CLI
   def continue_message
     puts "\nWould you like to see read about another player?"
     puts "You can enter yes, no, or menu to go back to the main menu"
-    puts "Enter exit to end this program\n\n"
-      gets.strip.downcase
       input = gets.strip.downcase
     if input == "yes"
       list_players

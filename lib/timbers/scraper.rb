@@ -19,10 +19,25 @@ class Timbers::Scraper
     def self.player_bio(info)
       url = "https://www.timbers.com#{info.url}"
       html = Nokogiri::HTML(open(url))
-      bio = html.css("div.bio p:nth-child(2)").text
-      info.stat = bio
-    end
-  
-  
+      # bio = html.css("div.bio p:nth-child(2)").text
+      # info.stat = bio
 
+      p_tags = html.css("div.bio p")
+      bio_hash = {}
+      p_tags.each do |p|
+        strongs = p.css("strong")
+      strongs.each do |s|
+      if s.text.include?("20")
+        header = s.text.gsub(":", "")
+        body = s.next_sibling.text
+        bio_hash[header] = body
+        binding.pry
+      end
+    end
+    info.bio = bio_hash
+    end
+      
+     
+      
+    end
 end
