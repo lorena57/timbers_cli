@@ -10,8 +10,8 @@ class Timbers::Scraper
         name = indiv.css("a.name_link").text
         position = indiv.css("span.position").text
         url = indiv.css('a')[0].attr('href')
-        age = indiv.css("span.jersey").text
-        Timbers::Players.new(name, position, url, age)
+        jersey = indiv.css("span.jersey").text
+        Timbers::Players.new(name, position, url, jersey)
         #binding.pry
       end
     end 
@@ -23,7 +23,7 @@ class Timbers::Scraper
       # info.stat = bio
 
       first_p = html.css("div.bio p").first
-      if !first_p.text.include?("2019:")
+      if !first_p.text.include?("2019: ")
         bio = first_p.next_element.text
       else
         bio = "2019:#{first_p.text.split(/2019:/)[1]}"

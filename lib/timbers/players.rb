@@ -1,16 +1,16 @@
 class Timbers::Players
 
-    attr_accessor :name, :position, :url, :stat, :age, :bio
+    attr_accessor :name, :position, :url, :stat, :jersey, :bio
     
   
     @@all = []
    
-    def initialize(name, position, url, birthplace)
+    def initialize(name, position, url, jersey)
         @name = name
         @position = position
         @url = url
         @stat = stat
-        @age = age
+        @jersey = jersey
         @@all << self
     end 
     
