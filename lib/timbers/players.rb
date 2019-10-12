@@ -2,7 +2,6 @@ class Timbers::Players
 
     attr_accessor :name, :position, :url, :stat, :jersey, :bio
     
-  
     @@all = []
    
     def initialize(name, position, url, jersey)
