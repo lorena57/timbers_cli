@@ -3,57 +3,41 @@ class Timbers::CLI
   def call 
     self.greeting
     Timbers::Scraper.player_info
+    self.get_players
     self.list_players
     self.choose_player
-  end 
+    loop do
+      puts "\nWould you like to view information on another player?"
+      input = gets.strip.downcase
+      if input == "y" || input == "yes"
+        self.list_players
+      elsif input == "n" || input == "no"
+        puts "Thank you, see you later!"
+        break
+      else
+        puts "That is not a valid response."
+    end
+  end
+end
     
   def greeting
-    puts "\nWelcome to the Portland Timbers Home Page"
-    puts "\nTo select a player please select a number:"
-    
+    puts Rainbow("\nWelcome to the Portland Timbers Home Page").blue
+    puts "\nTo select a player please enter a number:"
   end
 
-  # def get_players
-  #   @players = Timbers::Players.all.sample(10)
-  # end
+  def get_players
+    @players = Timbers::Players.all.take(10)
+  end
 
-  # def list_players
-  #   puts 'Choose a month to see events.'
-  #   @players.each.with_index(1) do |player, index| 
-  #   puts "#{index}. #{player.name}"
-  #   end
-  # end
-
-  # def get_player
-  #   chosen_player = gets.strip.to_i
-  #   show_events_for(chosen_player) if valid_input(chosen_player, @players)
-  # end 
-
-  # def valid_input(input, data)
-  #   input.to_i <= data.length && input.to_i > 0
-  # end 
-
-    # def show_events_for(chosen_player)
-    #   person = @players[chosen_player - 1]
-    #   bio = person.bio
-    #   # person.get_events
-    #   binding.pry
-    #   puts "Here is the bio for #{person.name}"
-    # end
- 
-  #  def get_user(bio)
-  #   puts "Choose a player to see more details."
-  #   input = gets.strip
-  #   event = month.events[input.to_i - 1]
-  #   display_player_info(info)
-  #  end
-def list_players
-    Timbers::Players.all.take(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
+    #keep 7:23
+  def list_players
+    @players.each_with_index{|p,i| puts "#{i + 1}. #{p.name}\n"}
   end
 
   def choose_player
-    index = gets.strip.to_i - 1
-    info = Timbers::Players.all[index]
+    input = gets.strip.to_i - 1
+
+    info = Timbers::Players.all[input]
     Timbers::Scraper.player_bio(info)
       self.display_player_info(info)
       #binding.pry
@@ -61,9 +45,9 @@ def list_players
 
   def display_player_info(info)
     puts "-------------------------------------------------------Player Info-------------------------------------------------------------"
-    puts "\nName: #{info.name}\n"
-    puts "\nPosition: #{info.position}"
-    puts "\nJersey no.: #{info.jersey}\n"
+    puts Rainbow("\nName: #{info.name}").cyan
+    puts Rainbow("\nPosition: #{info.position}").cyan
+    puts Rainbow("\nJersey no.: #{info.jersey}").cyan
     puts "-------------------------------------------------------Player Bio------------------------------------------------------------\n"
     puts ""
     puts info.stat
@@ -71,14 +55,7 @@ def list_players
     # puts info.bio.to_a.first
   end
 
-  def continue_message
-    puts "Are you done? Type 'exit' to exit or enter any key to learn about another player.\n"
-    @input = gets.strip
-  end
 
-  def good_day
-    puts "Good day!"
-  end
 
 end
  
