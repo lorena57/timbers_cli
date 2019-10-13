@@ -7,10 +7,12 @@ class Timbers::CLI
     self.list_players
     self.choose_player
     loop do
-      puts "\nWould you like to view information on another player?"
+      puts "\nWould you like to read about another player?"
       input = gets.strip.downcase
       if input == "y" || input == "yes"
+        puts "To select a player please enter a number:"
         self.list_players
+        self.choose_player
       elsif input == "n" || input == "no"
         puts "Thank you, see you later!"
         break
@@ -35,13 +37,13 @@ end
   end
 
   def choose_player
-
-
-    input = gets.strip.to_i - 1
-    info = Timbers::Players.all[input]
+    input = gets.strip.to_i 
+    # input = gets.strip.to_i - 1
+    # info = Timbers::Players.all[input]
+    info = Timbers::Players.all[input - 1]
     Timbers::Scraper.player_bio(info)
     self.display_player_info(info)
-      #binding.pry
+    # binding.pry
   end
 
   def display_player_info(info)
