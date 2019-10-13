@@ -24,13 +24,14 @@ class Timbers::Scraper
 
       first_p = html.css("div.bio p").first
       if !first_p.text.include?("2019: ")
+        # binding.pry
         bio = first_p.next_element.text
       else
         bio = "2019:#{first_p.text.split(/2019:/)[1]}"
+      # binding.pry
       end
-      
-      info.stat = bio  
-
+      twenty19 = bio.split(/2018:/)[0]
+      info.stat = twenty19  
     end
 
 # p_tags = html.css("div.bio p")

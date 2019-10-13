@@ -35,11 +35,12 @@ end
   end
 
   def choose_player
-    input = gets.strip.to_i - 1
 
+
+    input = gets.strip.to_i - 1
     info = Timbers::Players.all[input]
     Timbers::Scraper.player_bio(info)
-      self.display_player_info(info)
+    self.display_player_info(info)
       #binding.pry
   end
 
