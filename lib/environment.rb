@@ -8,6 +8,7 @@ require_relative "./timbers/scraper"
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'rainbow'
 
 module Timbers
   class Error < StandardError; end
