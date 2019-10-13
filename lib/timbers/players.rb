@@ -2,7 +2,7 @@ class Timbers::Players
 
     attr_accessor :name, :position, :url, :stat, :jersey
 
-    attr_writer :bio
+     attr_writer :bio
      
     @@all = []
    
