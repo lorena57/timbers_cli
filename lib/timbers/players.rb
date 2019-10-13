@@ -17,7 +17,7 @@ class Timbers::Players
     end 
     
     def self.all
-        @@all << self
+        @@all
     end
 
     def bio

@@ -3,11 +3,8 @@ class Timbers::CLI
   def call 
     self.greeting
     Timbers::Scraper.player_info
-    self.get_players
     self.list_players
-    self.get_players
     self.choose_player
-    
   end 
     
   def greeting
@@ -16,16 +13,16 @@ class Timbers::CLI
     
   end
 
-  def get_players
-    @players = Timbers::Players.all.sample(10)
-  end
+  # def get_players
+  #   @players = Timbers::Players.all.sample(10)
+  # end
 
-  def list_players
-    puts 'Choose a month to see events.'
-    @players.each.with_index(1) do |player, index| 
-    puts "#{index}. #{player.name}"
-    end
-  end
+  # def list_players
+  #   puts 'Choose a month to see events.'
+  #   @players.each.with_index(1) do |player, index| 
+  #   puts "#{index}. #{player.name}"
+  #   end
+  # end
 
   # def get_player
   #   chosen_player = gets.strip.to_i
@@ -44,28 +41,22 @@ class Timbers::CLI
     #   puts "Here is the bio for #{person.name}"
     # end
  
-  #  def get_user_event(bio)
+  #  def get_user(bio)
   #   puts "Choose a player to see more details."
   #   input = gets.strip
   #   event = month.events[input.to_i - 1]
   #   display_player_info(info)
-  
-# def list_players
-  #   Timbers::Players.all.sample(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
-  # end
-
-  # def list_years(info)
-  # return info from hash
-  # list key (years)
-  # have user select key (year)
-  # upon selection of year, display value
-  # end
+  #  end
+def list_players
+    Timbers::Players.all.take(10).each_with_index{|p,i| puts "#{i + 1}. #{p.name}"}
+  end
 
   def choose_player
     index = gets.strip.to_i - 1
     info = Timbers::Players.all[index]
     Timbers::Scraper.player_bio(info)
       self.display_player_info(info)
+      #binding.pry
   end
 
   def display_player_info(info)
@@ -75,9 +66,9 @@ class Timbers::CLI
     puts "\nJersey no.: #{info.jersey}\n"
     puts "-------------------------------------------------------Player Bio------------------------------------------------------------\n"
     puts ""
-    # puts info.stat
+    puts info.stat
 
-    puts info.bio.to_a.first
+    # puts info.bio.to_a.first
   end
 
   def continue_message
