@@ -18,7 +18,7 @@ class Timbers::Scraper
 
     def self.player_bio(info)
       url = "https://www.timbers.com#{info.url}"
-      html = Nokogiri::HTML(open(url))
+      html = Nokogiri::HTML(open(url)) 
       # bio = html.css("div.bio p:nth-child(2)").text
       # info.stat = bio
 

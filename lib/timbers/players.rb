@@ -1,6 +1,8 @@
 class Timbers::Players
 
-    attr_accessor :name, :position, :url, :stat, :jersey, :bio
+    attr_accessor :name, :position, :url, :stat, :jersey
+
+    attr_writer :bio
      
     @@all = []
    
@@ -11,10 +13,16 @@ class Timbers::Players
         @stat = stat
         @jersey = jersey
         @@all << self
+        @bio = []
     end 
     
     def self.all
-        return @@all
+        @@all << self
+    end
+
+    def bio
+        # binding.pry
+        Timbers::Scraper.player_bio(self) if @bio.empty?
     end
   
 
