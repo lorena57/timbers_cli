@@ -31,19 +31,20 @@ end
     @players = Timbers::Players.all.take(10)
   end
 
-    #keep 7:23
   def list_players
     @players.each_with_index{|p,i| puts "#{i + 1}. #{p.name}\n"}
   end
 
   def choose_player
+    input = gets.strip.to_i
+    while input < 1 || input > @players.length
+      puts "Please enter a valid input, select a number 1-10"
     input = gets.strip.to_i 
-    # input = gets.strip.to_i - 1
-    # info = Timbers::Players.all[input]
+  end
     info = Timbers::Players.all[input - 1]
     Timbers::Scraper.player_bio(info)
     self.display_player_info(info)
-    # binding.pry
+  
   end
 
   def display_player_info(info)
@@ -54,9 +55,17 @@ end
     puts "-------------------------------------------------------Player Bio------------------------------------------------------------\n"
     puts ""
     puts info.stat
-
-    # puts info.bio.to_a.first
   end
+
+  def get_user_month
+    input = gets.strip.to_i
+    choose_player(input) if valid_input(input, @players)
+  end 
+  
+  def valid_input(input, data)
+    input.to_i <= data.length && input.to_i > 0
+  end 
+
 
 
 
